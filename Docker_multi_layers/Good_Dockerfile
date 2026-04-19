@@ -1,0 +1,15 @@
+FROM ubuntu:22.04
+ENV PATH=/root/.local/bin:$PATH
+WORKDIR /app
+
+# --- Uneccesary multiple layers
+
+RUN apt update -y && apt apt upgrade -y && apt install -y curl unzip \  
+    && curl -L -o my-app.zip https://example.com/releases/app-${APP_VERSION}.zip \
+    && unzip my-app.zip
+COPY src /src
+
+
+# ---
+ 
+CMD ["./my-app-binary"]
