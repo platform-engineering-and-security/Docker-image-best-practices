@@ -1,0 +1,6 @@
+
+FROM  unauthorizedrepo/python:latest
+
+ENV DB_PASSWORD = "xyz"
+
+USER root
