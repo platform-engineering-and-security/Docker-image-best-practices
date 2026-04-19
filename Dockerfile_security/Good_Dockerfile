@@ -1,0 +1,10 @@
+
+FROM  python:3.13.13-slim
+
+RUN apt update -y && apt upgrade -y 
+
+RUN addgroup --system --gid 1001 appgroup && \
+    adduser --system --uid 1001 --ingroup appgroup appuser
+
+USER 1001
+
