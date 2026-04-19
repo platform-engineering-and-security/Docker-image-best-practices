@@ -1,0 +1,16 @@
+FROM ubuntu:22.04
+
+WORKDIR /app
+
+# --- Uneccesary multiple layers
+
+RUN apt update -y
+RUN apt upgrade -y
+RUN apt install -y curl
+RUN apt install -y unzip
+RUN curl -L -o my-app.zip https://example.com/releases/app-${APP_VERSION}.zip
+RUN unzip my-app.zip
+
+# --- 
+
+CMD ["./my-app-binary"]
