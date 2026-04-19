@@ -2,6 +2,11 @@ FROM ubuntu:22.04
 
 WORKDIR /app
 
+# Layers which keep changing and should be at the end.
+
+COPY src /src
+
+
 # --- Uneccesary multiple layers
 
 RUN apt update -y
@@ -13,4 +18,5 @@ RUN unzip my-app.zip
 
 # --- 
 
+ENV PATH=/root/.local/bin:$PATH
 CMD ["./my-app-binary"]
