@@ -1,0 +1,13 @@
+# Stage 1 with unzip, wget 
+FROM python:3.14.4-bookworm AS builder
+# --- Unnecesary layers
+RUN apt install wget -y
+RUN curl -L -o my-app.zip https://example.com/releases/app-${APP_VERSION}.zip
+RUN unzip my-app.zip
+RUN rm -rf rm my-app.zip
+# ---
+
+# Stage 2 builds final image 
+FROM python:3.14.4-bookworm
+COPY --from=builder /my-app /my-app
+CMD ["./my-app-binary"]
